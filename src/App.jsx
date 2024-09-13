@@ -1,0 +1,32 @@
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Home from './components/Home';
+import Category from './components/Category';
+import Menu from './components/Menu';
+import Contact from './components/Contact';
+import AddFoodItem from './components/insert';
+import FoodSearch from './components/linearsearch';
+import CharacterSearch from './components/characterSearch';
+import Cart from './components/cart';
+
+const App = () => {
+  return (
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/category" element={<Category />} />
+        <Route path="/menu" element={<Menu />} />
+        <Route path="/insert" element={<AddFoodItem />} />
+        <Route path="/lsearch" element={<FoodSearch />} />
+        <Route path="/csearch" element={<CharacterSearch />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/contact" element={<Contact />} />
+        
+      </Routes>
+    </Router>
+  );
+};
+
+export default App;
