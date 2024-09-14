@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 13, 2024 at 07:52 PM
+-- Generation Time: Sep 14, 2024 at 05:16 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -20,6 +20,59 @@ SET time_zone = "+00:00";
 --
 -- Database: `food-order`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `address` text NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `total` decimal(10,2) NOT NULL,
+  `payment_method` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `email`, `name`, `address`, `phone`, `total`, `payment_method`, `created_at`) VALUES
+(1, '', '', '', '', 2000.00, 'test', '2024-09-14 10:34:06'),
+(2, '', '', '', '', 32.96, 'cash-on-delivery', '2024-09-14 10:41:07'),
+(3, 'abc@gmail.com', 'abc', 'abc', '9812345668', 2530.00, 'cod', '2024-09-14 12:30:05');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_items`
+--
+
+CREATE TABLE `order_items` (
+  `id` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `item_name` varchar(255) NOT NULL,
+  `item_price` decimal(10,2) NOT NULL,
+  `quantity` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `order_items`
+--
+
+INSERT INTO `order_items` (`id`, `order_id`, `item_id`, `item_name`, `item_price`, `quantity`) VALUES
+(1, 1, 1, 'test', 2000.00, 5),
+(2, 2, 1, 'Pizza', 10.99, 2),
+(3, 2, 2, 'Burger', 5.99, 1),
+(4, 3, 23, 'Momo', 200.00, 3),
+(5, 3, 24, 'Burger', 300.00, 4),
+(6, 3, 25, 'Biryani', 500.00, 1);
 
 -- --------------------------------------------------------
 
@@ -80,7 +133,10 @@ INSERT INTO `tbl_food` (`id`, `title`, `description`, `price`, `image_name`, `ca
 (22, 'Pizza', ' Pizza is an Italian dish consisting of a round', 500, 'uploads/66cf4fb0b60a0-pizza.jpg', 1, '', ''),
 (23, 'Momo', 'A burger typically consists of a cooked ', 200, 'uploads/66cf4fca322d7-momo.png', 2, '', ''),
 (24, 'Burger', 'Burger are Tibetan dish.', 300, 'uploads/66cf4ff12b917-burger.jpg', 2, '', ''),
-(25, 'Biryani', 'Biryani is a fragrant and flavorful ', 500, 'uploads/66cf500635f1c-biryani.png', 2, '', '');
+(25, 'Biryani', 'Biryani is a fragrant and flavorful ', 500, 'uploads/66cf500635f1c-biryani.png', 2, '', ''),
+(26, 'test', 'test', 233, 'uploads/66e47cc8d6764-bg1.png', 2, '', ''),
+(27, 'test', 'test', 233, 'uploads/66e47ccc9305e-bg1.png', 2, '', ''),
+(28, 'chips', 'chips', 39, 'uploads/66e53ba750570-bg.png', 1, '', '');
 
 -- --------------------------------------------------------
 
@@ -104,6 +160,19 @@ CREATE TABLE `tbl_order` (
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `order_items`
+--
+ALTER TABLE `order_items`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_order` (`order_id`);
 
 --
 -- Indexes for table `tbl_admin`
@@ -134,6 +203,18 @@ ALTER TABLE `tbl_order`
 --
 
 --
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `order_items`
+--
+ALTER TABLE `order_items`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `tbl_admin`
 --
 ALTER TABLE `tbl_admin`
@@ -149,13 +230,23 @@ ALTER TABLE `tbl_category`
 -- AUTO_INCREMENT for table `tbl_food`
 --
 ALTER TABLE `tbl_food`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `tbl_order`
 --
 ALTER TABLE `tbl_order`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `order_items`
+--
+ALTER TABLE `order_items`
+  ADD CONSTRAINT `fk_order` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
