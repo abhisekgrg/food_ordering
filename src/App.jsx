@@ -9,6 +9,7 @@ import AddFoodItem from './components/insert';
 import FoodSearch from './components/linearsearch';
 import CharacterSearch from './components/characterSearch';
 import Cart from './components/cart';
+import Checkout from './components/checkout';
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/lsearch" element={<FoodSearch />} />
         <Route path="/csearch" element={<CharacterSearch />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/checkout" element={<Checkout />} />
         <Route path="/contact" element={<Contact />} />
         
       </Routes>

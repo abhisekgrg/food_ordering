@@ -4,6 +4,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Button from './Button';
 
+axios.defaults.withCredentials = true;
+
 const Menu = () => {
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
@@ -25,6 +27,7 @@ const Menu = () => {
         setError(response.data.message);
       } else {
         setData(response.data);
+        setError(null); // clear any previous errors
       }
     })
     .catch(err => {
@@ -34,7 +37,7 @@ const Menu = () => {
 
   useEffect(() => {
     fetchData(); // Fetch data when component mounts
-  }, [minPrice, maxPrice, category]);
+  }, []); // Empty dependency array, only runs once on mount
 
   // Function to fetch and log cart items
   const fetchCartItems = async () => {
@@ -45,7 +48,6 @@ const Menu = () => {
       toast.error('Error fetching cart items.');
       console.error('Error fetching cart items:', error);
     }
-    
   };
 
   // Add to cart function
@@ -78,31 +80,32 @@ const Menu = () => {
 
   return (
     <>
-      <div className="filters">
-        <input 
+    <div className='mx-[100px] mb-[30px] bg-slate-300 p-4'>
+
+    
+      <div className="filters flex gap-4 align-middle">
+        <label htmlFor="" className='content-center font-semibold'>Min Price</label>
+        <input className='p-2'
           type="number" 
           placeholder="Min Price" 
           value={minPrice} 
           onChange={(e) => setMinPrice(Number(e.target.value))} 
         />
-        <input 
+        <label htmlFor="" className='content-center font-semibold'>Max Price</label>
+
+        <input className='p-2'
           type="number" 
           placeholder="Max Price" 
           value={maxPrice} 
           onChange={(e) => setMaxPrice(Number(e.target.value))} 
         />
-        <input 
-          type="text" 
-          placeholder="Category" 
-          value={category} 
-          onChange={(e) => setCategory(e.target.value)} 
-        />
+       
         <Button text="Apply Filters" onClick={fetchData}>
           Apply filters
         </Button>
       </div>
-
-      <div className='grid m-[100px] gap-4 grid-cols-5'>
+      </div>
+      <div className='grid mx-[100px] gap-4 grid-cols-5'>
         {data.length > 0 ? (
           data.map((food) => (
             <div key={food.id} className='bg-black text-white rounded-lg'>
