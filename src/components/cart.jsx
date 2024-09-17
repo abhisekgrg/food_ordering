@@ -14,7 +14,17 @@ const Cart = () => {
     const fetchCartItems = async () => {
         try {
             const response = await axios.get('http://localhost/php-rest-api/cart.php?action=get');
-            setCartItems(response.data);
+            console.log('API Response:', response.data); // Log the response to check its format
+
+            // Convert the response object into an array
+            const itemsArray = Object.values(response.data);
+
+            if (Array.isArray(itemsArray)) {
+                setCartItems(itemsArray);
+            } else {
+                console.error('Unexpected response format:', response.data);
+                throw new Error('Invalid response format');
+            }
         } catch (error) {
             toast.error('Error fetching cart items.');
             console.error('Error fetching cart items:', error);

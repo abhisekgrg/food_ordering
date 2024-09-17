@@ -30,6 +30,9 @@ const Navbar = () => {
             <Link to="/csearch" className="text-white hover:text-gray-400 cursor-pointer">Charater Search</Link>
           </li>
           <li>
+            <Link to="/binarysearch" className="text-white hover:text-gray-400 cursor-pointer">Binary Search</Link>
+          </li>
+          <li>
             <Link to="/Contact" className="text-white hover:text-gray-400 cursor-pointer">Contact</Link>
           </li>
         </ul>
@@ -40,6 +43,7 @@ const Navbar = () => {
             <Link to="/cart" className="text-white hover:text-gray-400 cursor-pointer"><FaCartShopping className='text-2xl'/></Link>
           </li>
         <Button text="Click me" />
+        
         </div>
         
       </div>

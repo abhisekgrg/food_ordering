@@ -8,6 +8,7 @@ const AddFoodItem = () => {
     fdescription: '',
     fprice: '',
     fcategory_id: '',
+    fingredients: '', // New ingredients field
   });
 
   const [image, setImage] = useState(null);
@@ -31,6 +32,7 @@ const AddFoodItem = () => {
     formData.append('fdescription', foodData.fdescription);
     formData.append('fprice', foodData.fprice);
     formData.append('fcategory_id', foodData.fcategory_id);
+    formData.append('fingredients', foodData.fingredients); // Append ingredients
     formData.append('image', image); // Append the image file
 
     try {
@@ -120,6 +122,20 @@ const AddFoodItem = () => {
               placeholder="Enter category ID"
               required
             />
+          </div>
+          <div className="mb-6">
+            <label className="block text-gray-700 font-bold mb-2" htmlFor="fingredients">
+              Ingredients
+            </label>
+            <textarea
+              id="fingredients"
+              name="fingredients"
+              value={foodData.fingredients}
+              onChange={handleChange}
+              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-300"
+              placeholder="Enter ingredients (comma-separated)"
+              required
+            ></textarea>
           </div>
           <div className="mb-6">
             <label className="block text-gray-700 font-bold mb-2" htmlFor="image">
