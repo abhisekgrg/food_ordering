@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
+
+
 const AddFoodItem = () => {
   const [foodData, setFoodData] = useState({
     fname: '',
@@ -60,6 +62,8 @@ const AddFoodItem = () => {
   };
 
   return (
+    <div className='flex'>
+    
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
       <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center">Add Food Item</h2>
@@ -159,6 +163,8 @@ const AddFoodItem = () => {
         </form>
       </div>
     </div>
+    </div>
+
   );
 };
 

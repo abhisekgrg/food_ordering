@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
+import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Button from './Button';
@@ -13,7 +13,10 @@ const Menu = () => {
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(1000);
   const [category, setCategory] = useState('');
-  const navigate = useNavigate(); // Initialize navigate
+
+  useEffect(() => {
+    fetchData(); // Fetch data on component mount
+  }, [minPrice, maxPrice, category]); // Depend on filters
 
   const fetchData = () => {
     axios.get('http://localhost/php-rest-api/api-fetch-all.php', {
@@ -36,15 +39,7 @@ const Menu = () => {
     });
   };
 
-  useEffect(() => {
-    fetchData();
-  }, [minPrice, maxPrice, category]); // Depend on filters
-
   const addToCart = (food) => {
-    // Check if the user is logged in
-
-   
-
     const item = {
       id: food.id,
       name: food.title,

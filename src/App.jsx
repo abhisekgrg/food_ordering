@@ -12,6 +12,12 @@ import Cart from './components/cart';
 import Checkout from './components/checkout';
 import FoodSingle from './components/foodSingle';
 import Binarysearch from './components/binarysearch';
+import Registration from './register';
+import Login from './components/login';
+import Dashboard from './components/dashboard';
+import FoodManagement from './FoodManagement';
+import EditFood from './components/editFood';
+
 
 
 const App = () => {
@@ -22,13 +28,21 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/category" element={<Category />} />
         <Route path="/menu" element={<Menu />} />
-        <Route path="/insert" element={<AddFoodItem />} />
+        <Route path="dashboard/insertfood" element={<AddFoodItem />} />
         <Route path="/lsearch" element={<FoodSearch />} />
         <Route path="/csearch" element={<CharacterSearch />} />
         <Route path="/binarysearch" element={<Binarysearch />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard/editfood/:id" element={<EditFood />} />
+        
+     
+        <Route path="dashboard/food" element={<FoodManagement />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/register" element={<Registration />} />
+        <Route path="/login" element={<Login />} />
+        
         
       
         

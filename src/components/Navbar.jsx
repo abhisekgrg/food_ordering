@@ -27,6 +27,10 @@ const Navbar = () => {
             <Link to="/lsearch" className="text-white hover:text-gray-400 cursor-pointer">Linear Search</Link>
           </li>
           <li>
+            <Link to="/dashboard" className="text-white hover:text-gray-400 cursor-pointer">Dashboard</Link>
+          </li>
+         
+          <li>
             <Link to="/csearch" className="text-white hover:text-gray-400 cursor-pointer">Charater Search</Link>
           </li>
           <li>
@@ -42,6 +46,15 @@ const Navbar = () => {
         
             <Link to="/cart" className="text-white hover:text-gray-400 cursor-pointer"><FaCartShopping className='text-2xl'/></Link>
           </li>
+          <li>
+        
+        <Link to="/register" className="text-white hover:text-gray-400 cursor-pointer">Register</Link>
+      </li>
+
+      <li>
+        
+        <Link to="/login" className="text-white hover:text-gray-400 cursor-pointer">Login</Link>
+      </li>
         <Button text="Click me" />
         
         </div>
